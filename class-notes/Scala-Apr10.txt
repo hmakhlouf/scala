@@ -1,0 +1,226 @@
+
+ Scala Curriculum
+------------------------------------------
+ Module 1  - Starting Scala
+ Module 2  - Scala 101
+ Module 3  - Classes, Objects, Apps and more
+ Module 4  - Control Structures in Scala
+ Module 5  - Functions and Closures
+ Module 6  - Custom Control Structures
+ Module 7  - Composition and Inheritance
+ Module 8  - Hierarchy, Types and Options
+ Module 9  - Traits
+ Module 10 - Packages, Imports and Scope
+ Module 11 - Testing in Scala
+ Module 12 - Pattern Matching
+ Module 13 - Lists
+ Module 14 - Collections
+ Module 15 - Building Scala, SBT, Java Compatibility
+ Module 16 - Futures
+
+  
+ Course Materials
+ ----------------
+   -> PDF Presentations
+   -> Code modules
+   -> Class notes 
+   -> Github: to be created ..
+
+
+ Scala
+ -----
+    Scala  => SCAlable LAnguage
+
+
+   Getting started with Scala
+   --------------------------
+	
+	1. Using your vLab
+
+		-> Scala shell can be launched by typeing "spark-shell" on a terminal.
+		-> Scala IDE
+			-> Search for Scala IDE 
+			-> Navigate inside the directory structure and click in 'eclipse' application icon
+			-> This will launch Scala IDE.
+
+	2. Installing Scala binaries (not preferred)
+			
+		-> Link : https://www.scala-lang.org/download/
+			  Click on "the Scala installer for Windows" link
+
+        3. Installing an IDE
+
+		3.1 Scala IDE for Eclispe
+		    -> Make sure your JDK 1.8 (Java 8) installed.
+		    -> Download the Scala IDE for Eclipse zip file from http://scala-ide.org/download/sdk.html
+		    -> Unzip it to a folder
+		    -> Navigate inside the directory structure and click in 'eclipse' application icon
+		
+		3.2 IntelliJ
+		    -> https://docs.scala-lang.org/getting-started/index.html#
+		    -> Navigate to "Using IntelliJ" section of the page
+		    -> Doenload and install "IntelliJ Community Edition"
+		    -> Install Scala plugin in the IntelliJ IDE.
+
+	4. Using online scala compiler
+		  -> https://scastie.scala-lang.org/
+
+ 
+   Create a Scala project
+   ----------------------
+
+	-> Open Scala IDE
+	-> Manin Menu -> File -> New -> Scala Project
+	-> Provide a name and click on Finish
+
+	-> Write click on the src folder and select New -> Package
+	-> Right click on the package and select New -> Scala object
+
+	-> Write your code (using extends App or main method)
+	-> Right click on the code an select Run As -> Scala Application
+
+
+   Scala Basics
+   -------------
+
+    Scala is compatible with Java
+         -> Scala byte code runs inside a JVM.
+
+    Scala is multi-paradigm programming language
+	-> Scala is both Object oriented programming language and functional programming language. 
+
+    Scala is "Pure Object Oriented Programming" language.
+	-> Scala does not have any primitives
+	-> Scala does not have any operators
+
+	  val i = 10.+(20)
+	  val i = 10 +(20)
+	  val i = 10 + 20
+
+		=> In the above statement, 10 & 20 are objects; + is a method
+
+
+    Scala is a statically typed language
+	-> The type of the object is known at compile type.
+	-> The type once defined, can not be changed
+
+	 
+    Scala values and variables (immutables & mutables)
+	
+	 val -> immutable (can not change)
+	 var -> mutable (can change)
+
+
+	 val i: Int = 10
+	 i = 20   // invalid statement
+
+	 var j: Int = 10
+	 j = 20   // valid statement
+
+
+    Scala has implicit type inferece
+	-> No need of explicit declaration of type
+
+	val i = 10   // i automaticaly is inferred as Int type.
+
+
+    Scala Blocks
+    ------------
+
+	-> Block is one or more statements that are enclosed in { .. }
+	-> A block can be assigned to a variable
+	-> The value returned by a block is the value of the last executable statement inside the block
+	-> If a block contains a single statment you can omit the  { .. }
+
+
+   Scala Unit
+   ----------
+	Unit represents an object with no value
+	Unit is printed as ()
+
+
+   Scala class hierarchy
+   ---------------------
+
+	Any  => AnyVal  -> Int, Long, Double, Boolean, Char, Unit
+		AnyRef  -> String, List, Map, Vector, .. all other classes
+
+   Input (StdIn)
+   -------------
+	val name = StdIn.readLine("What is your name? ")
+     	println("What is your age")
+    	val age = StdIn.readInt()
+     	println("What is your height in feet")
+     	val height = StdIn.readDouble()
+
+
+   Output
+   ------
+	print, println, printf
+
+
+   String interpolators
+   --------------------
+
+	s interpolator -> evaluates variables using $ symbol
+
+		val output = s"Name: $name, age: ${age+10}, height: $height"
+
+	f interpolator -> s interpolator + formatting chars
+
+		val output = f"Name: $name, age: ${age+10}, height: $height%2.3f"
+
+	raw interpolator
+		
+		-> to be discussed.
+
+
+
+
+
+  
+	
+
+
+    
+
+     
+   
+	
+
+	
+   
+	
+   
+  
+
+
+     
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
