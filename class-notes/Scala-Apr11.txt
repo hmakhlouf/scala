@@ -1,0 +1,425 @@
+
+ Scala Curriculum
+------------------------------------------
+ Module 1  - Starting Scala
+ Module 2  - Scala 101
+ Module 3  - Classes, Objects, Apps and more
+ Module 4  - Control Structures in Scala
+ Module 5  - Functions and Closures
+ Module 6  - Custom Control Structures
+ Module 7  - Composition and Inheritance
+ Module 8  - Hierarchy, Types and Options
+ Module 9  - Traits
+ Module 10 - Packages, Imports and Scope
+ Module 11 - Testing in Scala
+ Module 12 - Pattern Matching
+ Module 13 - Lists
+ Module 14 - Collections
+ Module 15 - Building Scala, SBT, Java Compatibility
+ Module 16 - Futures
+
+  
+ Course Materials
+ ----------------
+   -> PDF Presentations
+   -> Code modules
+   -> Class notes 
+   -> Github: https://github.com/ykanakaraju/scala
+
+
+ Scala
+ -----
+    Scala  => SCAlable LAnguage
+
+
+   Getting started with Scala
+   --------------------------
+	
+	1. Using your vLab
+
+		-> Scala shell can be launched by typeing "spark-shell" on a terminal.
+		-> Scala IDE
+			-> Search for Scala IDE 
+			-> Navigate inside the directory structure and click in 'eclipse' application icon
+			-> This will launch Scala IDE.
+
+	2. Installing Scala binaries (not preferred)
+			
+		-> Link : https://www.scala-lang.org/download/
+			  Click on "the Scala installer for Windows" link
+
+        3. Installing an IDE
+
+		3.1 Scala IDE for Eclispe
+		    -> Make sure your JDK 1.8 (Java 8) installed.
+		    -> Download the Scala IDE for Eclipse zip file from http://scala-ide.org/download/sdk.html
+		    -> Unzip it to a folder
+		    -> Navigate inside the directory structure and click in 'eclipse' application icon
+		
+		3.2 IntelliJ
+		    -> https://docs.scala-lang.org/getting-started/index.html#
+		    -> Navigate to "Using IntelliJ" section of the page
+		    -> Doenload and install "IntelliJ Community Edition"
+		    -> Install Scala plugin in the IntelliJ IDE.
+
+	4. Using online scala compiler
+		  -> https://scastie.scala-lang.org/
+
+ 
+   Create a Scala project
+   ----------------------
+
+	-> Open Scala IDE
+	-> Manin Menu -> File -> New -> Scala Project
+	-> Provide a name and click on Finish
+
+	-> Write click on the src folder and select New -> Package
+	-> Right click on the package and select New -> Scala object
+
+	-> Write your code (using extends App or main method)
+	-> Right click on the code an select Run As -> Scala Application
+
+
+   Scala Basics
+   -------------
+
+    Scala is compatible with Java
+         -> Scala byte code runs inside a JVM.
+
+    Scala is multi-paradigm programming language
+	-> Scala is both Object oriented programming language and functional programming language. 
+
+    Scala is "Pure Object Oriented Programming" language.
+	-> Scala does not have any primitives
+	-> Scala does not have any operators
+
+	  val i = 10.+(20)
+	  val i = 10 +(20)
+	  val i = 10 + 20
+
+		=> In the above statement, 10 & 20 are objects; + is a method
+
+
+    Scala is a statically typed language
+	-> The type of the object is known at compile type.
+	-> The type once defined, can not be changed
+
+	 
+    Scala values and variables (immutables & mutables)
+	
+	 val -> immutable (can not change)
+	 var -> mutable (can change)
+
+
+	 val i: Int = 10
+	 i = 20   // invalid statement
+
+	 var j: Int = 10
+	 j = 20   // valid statement
+
+
+    Scala has implicit type inferece
+	-> No need of explicit declaration of type
+
+	val i = 10   // i automaticaly is inferred as Int type.
+
+
+    Scala Blocks
+    ------------
+
+	-> Block is one or more statements that are enclosed in { .. }
+	-> A block can be assigned to a variable
+	-> The value returned by a block is the value of the last executable statement inside the block
+	-> If a block contains a single statment you can omit the  { .. }
+
+
+   Scala Unit
+   ----------
+	Unit represents an object with no value
+	Unit is printed as ()
+
+
+   Scala class hierarchy
+   ---------------------
+
+	Any  => AnyVal  -> Int, Long, Double, Boolean, Char, Unit
+		AnyRef  -> String, List, Map, Vector, .. all other classes
+
+   Input (StdIn)
+   -------------
+	val name = StdIn.readLine("What is your name? ")
+     	println("What is your age")
+    	val age = StdIn.readInt()
+     	println("What is your height in feet")
+     	val height = StdIn.readDouble()
+
+
+   Output
+   ------
+	print, println, printf
+
+	print("some text ...")	     // no new line char at the end
+	println("some text ...")     // adds new line char at the end
+	printf("We are using %s ver %2.2f", "Scala", 2.12213131312)
+
+
+   String interpolators
+   --------------------
+
+	s interpolator -> evaluates variables using $ symbol
+
+		val output = s"Name: $name, age: ${age+10}, height: $height"
+
+	f interpolator -> s interpolator + formatting chars
+
+		val output = f"Name: $name, age: ${age+10}, height: $height%2.3f"
+
+	raw interpolator -> s interpolator + escapes the escape chars
+		
+		val output = raw"Name: $name \nage: ${age+10} \nfilePath: E:\newdir\readme.txt"   
+     		println(output)
+
+
+   Lazy Values
+   -----------
+
+    -> 'lazy' keyword can be used ONLY for val types (immutables)
+    -> The execution of lazy values is differed until the time their value in required in the code.
+
+    val val1 = {
+        println("<------ initializing val1 -------> ")       // 1
+        "This is val1"
+    }      
+    
+    lazy val val2 = {
+        println("<------ initializing val2 -------> ")       // 2
+        "This is val2"
+    }    
+  
+    println("<--- nothing is referenced yet --->")           // 3
+    println("")
+    println("val1 first time: " + val1)                      // 4
+    println("")
+    println("val1 second time: " + val1)                     // 5
+    println("")
+          
+    println("val2 first time: " + val2)                      // 6
+    println("")
+    println("val2 second time: " + val2)                     // 7
+
+   
+   Control flow constructs
+   -----------------------
+
+    if .. else if ... else ...
+
+	-> if..else construct returns value.
+
+	val i = if (x == 100) 0 else if (x > 100) x - 100 else 100 - x 
+
+	val i = if (x == 100) 0 else if (x > 100) x - 100 else "hello" 
+	// here i will be of type "Any"
+
+
+   match..case
+
+	val output = x match {
+       		case 10 => "Ten"
+       		case 20 => "Twenty"
+       		case 30 => "Thirty"
+       		case a if (a%2 == 0) => s"Even number ($a)"
+       		case a if (a%2 == 1) => s"Odd number ($a)"
+       		case _  => 0
+     	}
+
+
+   Loops
+   ======
+
+    while loop
+    --------
+	val x = 20
+     	var counter = 0
+     
+     	while( counter < x ) {
+        	println(counter)
+        	counter += 1        
+     	}
+     
+     	println(i)
+
+
+    do..while
+    ---------
+	do {
+        	println(counter)
+        	counter += 1        
+     	} while( counter < x )
+
+
+    foreach
+    --------
+
+	<iterable>.foreach( fn )
+	List(1,2,3,4,34,35,72,9).foreach( x => println( x*10 ) )
+	"Scala programming language".foreach( x => println( x toUpper ) )
+
+    for
+    ---
+	
+	for( i <- <iterable> ) { ... }	
+  
+	for( i <- "scala" ) println( i.toUpper )
+	for( i <- Range(1, 20, 3) ) println( i )
+    
+	for( i <- 0 to 20 by 5 ) println( i )
+	for( i <- 0 until 20 by 5 ) println( i )
+
+	// for loop can take multiple nested generators
+	for( i <- 0 until 10 by 2 ; j <- 10 to 100 by 10 ) println( i, j )
+
+	// for loop can apply guards to generator(s)
+	for( i <- 0 until 10 by 2 if (i < 6); j <- 1 to 10 by 2 if (j > i) ) {       
+            println( i, j )
+        }
+
+
+        for comprehension
+	-----------------
+	-> Allows us to collect the values as a Vector using "yield" from a for loop
+
+	val v = for( i <- 0 until 10 by 2 if (i < 6); j <- 1 to 10 by 2 if (j > i) ) yield((i, j))
+
+   Range
+   -----
+     
+       Range(start, end, [step])
+
+       Examples: 
+		Range(1, 10)
+		Range(100, 0, -10)
+       	 	Range('A', 'H', 2)
+		1 to 10    // inclusive
+		1 until 10
+		1 to 10 by 2
+		1 until 10 by 2
+
+
+   Exception Handling
+   ------------------
+ 
+      => Exceptions are caught using try..catch..finally block
+      => Exceptions can be thrown by using "throw" keyworkd.
+
+	Check the programs: controlstructures/Exceptions.scala
+			    controlstructures/Exceptions2.scala
+
+
+
+   Methods
+   -------
+	=> Reusable/callable code block is called a method.
+
+	=> Methods can take parameter lists
+
+		def add(a: Int, b: Int)(c: Int)(d: String) : Double = {
+    			println(d)     
+    			(a + b)*c
+  		}
+		val output = add(10, 20)(5)("Some sample string") 
+
+	=> Method parameters/arguments can be passed by position or by name
+
+		 def add(a: Int, b: Int, c: Int): Int = { 
+      			println(s"a=$a, b=$b, c=$c")
+      			a + b + c
+  		}
+
+		val output = add(10, 20, 30)   		// by position
+		val output = add(b=10, c=20, a=30)   	// by name
+		val output = add(10, c=20, b=30)        // positional params followed by named params.
+
+	=> Method parameters can have default values
+
+		def add(a: Int = 0, b: Int = 0, c: Int = 0): Int = { 
+      			println(s"a=$a, b=$b, c=$c")
+      			a + b + c
+  		}
+			
+		val output = add(10, 20, 30)
+		val output = add(10, 20)
+		val output = add(10)
+		val output = add()
+
+	=> Methods can take variable length arguments
+
+		def add(a: Int, b:Int*): Int = { 
+      			var s = 0
+      			println( b.toList )
+      			for( i <- b ) s += i
+      			a + s
+  		}  
+		val output = add(10, 20, 30, 40, 50)  // here b is [20, 30, 40, 50]
+		val output = add(10, 20)  // here b is [20] 
+  		val output = add(10)      // here b is []
+  		println( output ) 
+
+	=> Methods can be invoked recursively
+
+		.. to be discussed.
+
+ 
+   Procedures
+   ----------
+
+
+
+   Functions
+   ---------
+
+
+
+
+
+    
+
+     
+   
+	
+
+	
+   
+	
+   
+  
+
+
+     
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
