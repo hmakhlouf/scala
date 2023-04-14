@@ -1,0 +1,747 @@
+
+ Scala Curriculum
+------------------------------------------
+ Module 1  - Starting Scala
+ Module 2  - Scala 101
+ Module 3  - Classes, Objects, Apps and more
+ Module 4  - Control Structures in Scala
+ Module 5  - Functions and Closures
+ Module 6  - Custom Control Structures
+ Module 7  - Composition and Inheritance
+ Module 8  - Hierarchy, Types and Options
+ Module 9  - Traits
+ Module 10 - Packages, Imports and Scope
+ Module 11 - Testing in Scala
+ Module 12 - Pattern Matching
+ Module 13 - Lists
+ Module 14 - Collections
+ Module 15 - Building Scala, SBT, Java Compatibility
+ Module 16 - Futures
+
+  
+ Course Materials
+ ----------------
+   -> PDF Presentations
+   -> Code modules
+   -> Class notes 
+   -> Github: https://github.com/ykanakaraju/scala
+
+
+ Scala
+ -----
+    Scala  => SCAlable LAnguage
+
+
+   Getting started with Scala
+   --------------------------
+	
+	1. Using your vLab
+
+		-> Scala shell can be launched by typeing "spark-shell" on a terminal.
+		-> Scala IDE
+			-> Search for Scala IDE 
+			-> Navigate inside the directory structure and click in 'eclipse' application icon
+			-> This will launch Scala IDE.
+
+	2. Installing Scala binaries (not preferred)
+			
+		-> Link : https://www.scala-lang.org/download/
+			  Click on "the Scala installer for Windows" link
+
+        3. Installing an IDE
+
+		3.1 Scala IDE for Eclispe
+		    -> Make sure your JDK 1.8 (Java 8) installed.
+		    -> Download the Scala IDE for Eclipse zip file from http://scala-ide.org/download/sdk.html
+		    -> Unzip it to a folder
+		    -> Navigate inside the directory structure and click in 'eclipse' application icon
+		
+		3.2 IntelliJ
+		    -> https://docs.scala-lang.org/getting-started/index.html#
+		    -> Navigate to "Using IntelliJ" section of the page
+		    -> Doenload and install "IntelliJ Community Edition"
+		    -> Install Scala plugin in the IntelliJ IDE.
+
+	4. Using online scala compiler
+		  -> https://scastie.scala-lang.org/
+
+ 
+   Create a Scala project
+   ----------------------
+
+	-> Open Scala IDE
+	-> Manin Menu -> File -> New -> Scala Project
+	-> Provide a name and click on Finish
+
+	-> Write click on the src folder and select New -> Package
+	-> Right click on the package and select New -> Scala object
+
+	-> Write your code (using extends App or main method)
+	-> Right click on the code an select Run As -> Scala Application
+
+
+   Scala Basics
+   -------------
+
+    Scala is compatible with Java
+         -> Scala byte code runs inside a JVM.
+
+    Scala is multi-paradigm programming language
+	-> Scala is both Object oriented programming language and functional programming language. 
+
+    Scala is "Pure Object Oriented Programming" language.
+	-> Scala does not have any primitives
+	-> Scala does not have any operators
+
+	  val i = 10.+(20)
+	  val i = 10 +(20)
+	  val i = 10 + 20
+
+		=> In the above statement, 10 & 20 are objects; + is a method
+
+
+    Scala is a statically typed language
+	-> The type of the object is known at compile type.
+	-> The type once defined, can not be changed
+
+	 
+    Scala values and variables (immutables & mutables)
+	
+	 val -> immutable (can not change)
+	 var -> mutable (can change)
+
+
+	 val i: Int = 10
+	 i = 20   // invalid statement
+
+	 var j: Int = 10
+	 j = 20   // valid statement
+
+
+    Scala has implicit type inferece
+	-> No need of explicit declaration of type
+
+	val i = 10   // i automaticaly is inferred as Int type.
+
+
+    Scala Blocks
+    ------------
+
+	-> Block is one or more statements that are enclosed in { .. }
+	-> A block can be assigned to a variable
+	-> The value returned by a block is the value of the last executable statement inside the block
+	-> If a block contains a single statment you can omit the  { .. }
+
+
+   Scala Unit
+   ----------
+	Unit represents an object with no value
+	Unit is printed as ()
+
+
+   Scala class hierarchy
+   ---------------------
+
+	Any  => AnyVal  -> Int, Long, Double, Boolean, Char, Unit
+		AnyRef  -> String, List, Map, Vector, .. all other classes
+
+   Input (StdIn)
+   -------------
+	val name = StdIn.readLine("What is your name? ")
+     	println("What is your age")
+    	val age = StdIn.readInt()
+     	println("What is your height in feet")
+     	val height = StdIn.readDouble()
+
+
+   Output
+   ------
+	print, println, printf
+
+	print("some text ...")	     // no new line char at the end
+	println("some text ...")     // adds new line char at the end
+	printf("We are using %s ver %2.2f", "Scala", 2.12213131312)
+
+
+   String interpolators
+   --------------------
+
+	s interpolator -> evaluates variables using $ symbol
+
+		val output = s"Name: $name, age: ${age+10}, height: $height"
+
+	f interpolator -> s interpolator + formatting chars
+
+		val output = f"Name: $name, age: ${age+10}, height: $height%2.3f"
+
+	raw interpolator -> s interpolator + escapes the escape chars
+		
+		val output = raw"Name: $name \nage: ${age+10} \nfilePath: E:\newdir\readme.txt"   
+     		println(output)
+
+
+   Lazy Values
+   -----------
+
+    -> 'lazy' keyword can be used ONLY for val types (immutables)
+    -> The execution of lazy values is differed until the time their value in required in the code.
+
+    val val1 = {
+        println("<------ initializing val1 -------> ")       // 1
+        "This is val1"
+    }      
+    
+    lazy val val2 = {
+        println("<------ initializing val2 -------> ")       // 2
+        "This is val2"
+    }    
+  
+    println("<--- nothing is referenced yet --->")           // 3
+    println("")
+    println("val1 first time: " + val1)                      // 4
+    println("")
+    println("val1 second time: " + val1)                     // 5
+    println("")
+          
+    println("val2 first time: " + val2)                      // 6
+    println("")
+    println("val2 second time: " + val2)                     // 7
+
+   
+   Control flow constructs
+   -----------------------
+
+    if .. else if ... else ...
+
+	-> if..else construct returns value.
+
+	val i = if (x == 100) 0 else if (x > 100) x - 100 else 100 - x 
+
+	val i = if (x == 100) 0 else if (x > 100) x - 100 else "hello" 
+	// here i will be of type "Any"
+
+
+   match..case
+
+	val output = x match {
+       		case 10 => "Ten"
+       		case 20 => "Twenty"
+       		case 30 => "Thirty"
+       		case a if (a%2 == 0) => s"Even number ($a)"
+       		case a if (a%2 == 1) => s"Odd number ($a)"
+       		case _  => 0
+     	}
+
+
+   Loops
+   ======
+
+    while loop
+    --------
+	val x = 20
+     	var counter = 0
+     
+     	while( counter < x ) {
+        	println(counter)
+        	counter += 1        
+     	}
+     
+     	println(i)
+
+
+    do..while
+    ---------
+	do {
+        	println(counter)
+        	counter += 1        
+     	} while( counter < x )
+
+
+    foreach
+    --------
+
+	<iterable>.foreach( fn )
+	List(1,2,3,4,34,35,72,9).foreach( x => println( x*10 ) )
+	"Scala programming language".foreach( x => println( x toUpper ) )
+
+    for
+    ---
+	
+	for( i <- <iterable> ) { ... }	
+  
+	for( i <- "scala" ) println( i.toUpper )
+	for( i <- Range(1, 20, 3) ) println( i )
+    
+	for( i <- 0 to 20 by 5 ) println( i )
+	for( i <- 0 until 20 by 5 ) println( i )
+
+	// for loop can take multiple nested generators
+	for( i <- 0 until 10 by 2 ; j <- 10 to 100 by 10 ) println( i, j )
+
+	// for loop can apply guards to generator(s)
+	for( i <- 0 until 10 by 2 if (i < 6); j <- 1 to 10 by 2 if (j > i) ) {       
+            println( i, j )
+        }
+
+
+        for comprehension
+	-----------------
+	-> Allows us to collect the values as a Vector using "yield" from a for loop
+
+	val v = for( i <- 0 until 10 by 2 if (i < 6); j <- 1 to 10 by 2 if (j > i) ) yield((i, j))
+
+   Range
+   -----
+     
+       Range(start, end, [step])
+
+       Examples: 
+		Range(1, 10)
+		Range(100, 0, -10)
+       	 	Range('A', 'H', 2)
+		1 to 10    // inclusive
+		1 until 10
+		1 to 10 by 2
+		1 until 10 by 2
+
+
+   Tuple
+   -----
+     -> A single object that containes objects of different types.
+
+		val t1 = (10, 20, 2.5, true)
+    		val t2 = (20 > 5, 23.2, List(1,2,3), (10, 5.342), 20)
+    
+    		println( t1._1, t1._2, t1._3, t1._4) // (10,20,2.5,true)
+    
+    		println( t2._4._2 ) 	// 5.342
+
+    -> A tuple with two elements is called a "Pair"
+	Examples:
+		val t3 = (10, 20)
+    		val t4 = (12, (4, 4.5))
+ 
+
+
+   Exception Handling
+   ------------------
+ 
+      => Exceptions are caught using try..catch..finally block
+      => Exceptions can be thrown by using "throw" keyworkd.
+
+	Check the programs: controlstructures/Exceptions.scala
+			    controlstructures/Exceptions2.scala
+
+
+
+   Methods
+   -------
+	=> Reusable/callable code block is called a method.
+
+		def m1(a: Int, b: Int) : Int = {
+			a + b
+		}
+
+	=> Methods can take parameter lists
+
+		def add(a: Int, b: Int)(c: Int)(d: String) : Double = {
+    			println(d)     
+    			(a + b)*c
+  		}
+		val output = add(10, 20)(5)("Some sample string") 
+
+	=> Method parameters/arguments can be passed by position or by name
+
+		def add(a: Int, b: Int, c: Int): Int = { 
+      			println(s"a=$a, b=$b, c=$c")
+      			a + b + c
+  		}
+
+		val output = add(10, 20, 30)   		// by position
+		val output = add(b=10, c=20, a=30)   	// by name
+		val output = add(10, c=20, b=30)        // positional params followed by named params.
+
+	=> Method parameters can have default values
+
+		def add(a: Int, b: Int = 0, c: Int = 0): Int = { 
+      			println(s"a=$a, b=$b, c=$c")
+      			a + b + c
+  		}
+			
+		val output = add(10, 20, 30)
+		val output = add(10, 20)
+		val output = add(10)
+		val output = add()  // this is invalid
+
+	=> Methods can take variable length arguments
+
+		def add(a: Int, b:Int*): Int = { 
+      			var s = 0
+      			println( b.toList )
+      			for( i <- b ) s += i
+      			a + s
+  		}  
+		val output = add(10, 20, 30, 40, 50)  // here b is [20, 30, 40, 50]
+		val output = add(10, 20)  // here b is [20] 
+  		val output = add(10)      // here b is []
+  		println( output ) 
+
+	=> Methods can be invoked recursively
+
+		def factorial(n: Int) : Long = {      
+        		if (n <= 1)  1
+        		else n * factorial(n -1)
+    		}
+
+    		println( factorial(10) )
+
+        => Methods can be nested
+
+		def factorialTr(n: Int) : BigInt = {
+        		def fact(n: Int, accumulator: Int) : Int = {
+          			if (n == 1) accumulator
+          			else fact(n-1, n*accumulator)
+        		}        
+        		fact(n, 1)
+    		}
+
+
+   An example program
+   ------------------
+     => Print first N numbers in the fabonacci series:
+
+     def main(args: Array[String]) {
+      
+        println("How many number is the fabonacci series you want?")
+        
+        var num = StdIn.readLine()
+        
+        while( !isValid(num) ){
+          println("Invalid input. Enter a number greater than 1")
+          num = StdIn.readLine()
+        }
+        
+        var i = 1
+        var (f, s, x) = (1,1,0)
+        while( i <= num.toInt ) {
+          if (i <= 2) print("1 ")
+          else {
+            x = f + s
+            f = s
+            s = x
+            print( x + " " )            
+          }
+          i += 1
+        }        
+    }   
+    
+    def isValid(n: String) : Boolean = {
+       try {
+         val nInt = n.toInt
+         nInt > 1  
+       }
+       catch {
+         case e: NumberFormatException => false
+       }
+    }
+
+ 
+   Procedures
+   ----------
+     -> Procedure are like methods but they always return "Unit" irrespective of block output.
+     -> Syntactically, a procude does not have an = symbol in its definition.
+
+	def box( name: String ) {       
+             val line = "----" + "-" * name.length()       
+             println(line + "\n| " + name + " |\n" + line)            
+     	}
+     
+     	box("Scala is a programming language")
+
+
+   Functions
+   ---------
+
+	=> In FP languages, a function is treated like a 'literal' value.
+
+	Syntax:   (x: Int, y: Int) => { ... }
+
+	=> In FP languages, 
+	    -> A function is anonymous by nature
+	    -> A function has a value of its own
+	    -> A function can be assigned to a variable
+	    -> A function has a type
+	    -> A function can be passed as a parameter to another method/function
+	    -> A function can be returned as a return value from a method/function
+
+
+	function 					type
+	------------------------------------------------------------
+	(a: Int, b: Int) => a + b		(Int, Int) => Int
+	(name: String) => name.length		String => Int
+	(name: String) => name.toUpper		String => String
+	(c: String, t:Int) => c * t		(String, Int) => String
+	(a: Int, b: Int) => a > b		(Int, Int) => Boolean
+	() => "Windows OS"			() => String
+	(name: String) => print(name)		String => Unit
+	(p: (Int, Int), q: (Int, Int)) => (p._1 + q._1, p._2 + q._2)
+						((Int, Int), (Int, Int)) => (Int, Int)	
+
+	Passing functions as method/function parameters
+	-----------------------------------------------
+
+	Example 1
+	---------
+	def compute(i: Int, j: Int, f: (Int, Int) => Int)  = {
+         	f(i, j)
+        }
+
+	val x = compute(10, 20, (x: Int, y: Int) => x + y )
+	val x = compute(10, 20, (x, y) => x + y )
+	val x = compute(10, 20, _ + _ )
+
+	Example 2
+	---------
+	 def compute(i: Double, f: Double => Double)  = {
+             f(i)
+      	 }          
+         println( compute(12.6, floor) )
+
+  		
+	method/function returning a function
+	------------------------------------
+	def compute(op: String) = {
+        	op match {
+          		case "+" => (x: Int, y: Int) => x + y 
+          		case "-" => (x: Int, y: Int) => x - y
+          		case "*" => (x: Int, y: Int) => x * y
+          		case "/" => (x: Int, y: Int) => x / y
+          		case _ => (x: Int, y: Int) => x % y
+          
+        	}
+     	}
+     
+     	val f1 = compute("*")
+   
+     	println( compute("*")(10, 20) )
+
+
+
+   Higher Order Functions
+   ----------------------
+
+   1. map		P: U => V
+			Tranforms each element of the input collection to the corresponding
+			element of the output collection by applying the function.
+			object to object transformation.
+			Input Collection: N objects; Output Collection: N objects
+
+		val c2 = c1.map(s => s.toUpperCase )
+                 	   .map(x => x.split(" ").toList)
+
+
+   2. filter		P: U => Boolean	
+			The output collection will only have those elemnts for which the funtion returns true
+			Input Collection: N objects; Output Collection: <= N objects
+
+		val l2 = List(3,2,1,4,2,5,7,8,9,6,9,0,6,8,6,5,4,5,0,5,6,7,2)            
+     		val l3 = l2.filter( n => n%2 == 0 )
+
+  3. reduce		P: (U, U) => U
+			two varients: reduce or reduceLeft; reduceRight
+			Reduce the entire input collection to one object of the same type by iterativly applying
+			the function.
+			Input Collection: N objects; Output Collection: 1
+
+		val l2 = List(3,2,1,4,2,5,7,8,9)
+		val i = l2.reduceLeft( (x, y) => x - y )    // i = -35
+		val i = l2.reduceRight( (x, y) => x - y )   // i = 3
+
+  4. flatMap		P: U -> GenTraversableOnce[V]
+			flatMap flattens the iterables produced by the function
+			Input Collection: N objects; Output Collection: >= N objects
+
+		val words = l1.flatMap( x => x.split(" "))
+
+   5. sortWith		P: binary sorting function
+			Sorts the elements of the collection usng a binary sorting function
+			
+		val l4 = words.sortWith( (x, y) => x.length > y.length )
+
+
+   6. transform		P: U => U
+			Similar to map, but operates only on mutable collections
+			Performs in-place transformation
+
+			val a3 = scala.collection.mutable.Seq(3,2,1,4,2,5,7,8,9,6,9,0,6,8,6,5,4,5,0,5,6,7,2)     
+      			println( a3.mkString(",") )     
+      
+      			a3.transform( x => x + 10 )      
+      			println( a3.mkString(",") )
+
+
+   7. groupBy		P: U => V
+			Returns a map where:
+				Key: is each unique value of the function output
+				Value: the collection of elements that produced the key
+
+		val l4 = l3.groupBy( x => x._1 + x._2 )
+
+   8. mapValues		P: U -> V
+			Applied only to Maps
+			Will transform the value part (only) of the (K, V) pairs by applying the function
+									
+			val l5 = l4.mapValues(v => (v, v))   
+            		println( l5 )      
+      			val l6 = l5.mapValues(x => x._1 + x._2)
+      			println( l6 )
+
+
+	Wordcount program using HOFs
+        ----------------------------
+   	val output = Source.fromFile("file1.txt")
+                       .getLines
+                       .flatMap(x => x.split(" "))
+                       .toList
+                       .groupBy( x => x )
+                       .mapValues( x => x.length )
+                       .toSeq
+                       .sortWith( (x, y) => (x._2 > y._2))         
+     
+      	output.foreach(println)
+
+
+   9. fold             foldLeft (or fold) & foldRight
+		       fold is used to reduce an entire collection to a type different than the type of element.
+
+			fold takes two arguments as parameter lists:
+
+			zero-value: initial-value of type of the output you want to produce
+			sequence-function: (Z, V) -> Z merges all the values of the collection with the zero-values
+			iterativly.
+
+			val s = l2.foldLeft("A")( (z, v) => z + v )      // left to right
+			val s = l2.foldRight("A")( (v, z) => z + v )     // right to left
+	
+
+   10. scan		scanLeft & scanRight
+			Generates a list of intermediate results of fold operation
+
+			val s = l2.scanLeft("A")( (z, v) => z + v )      // left to right
+			val s = l2.scanRight("A")( (v, z) => z + v )     // right to left	
+		
+
+													
+   Collections
+   -----------
+
+     Types of Collections:
+
+	1. Sequence
+
+		1.1 IndexedSeq
+			Array: 		mutable, Fixed-length, same type
+			ArrayBuffer: 	mutable, Variable-length
+			Vector
+			Range
+
+		1.2 LinearSeq	
+			List
+			Queue
+			Stream
+
+	2. Set
+		=> Unordered collection of unique elements
+
+		val set1 = Set(1,2,3,4,5,6,7)   
+   		val set2 = scala.collection.mutable.Set(3,1,2,5,4,2,4,6,7,8,9,5,6,5,7,8)
+   
+   		println( set1 )   // Set(1, 5, 2, 6, 3, 7, 4) 
+
+	3. Map
+		=> Collection of Pairs (key-value pair)
+
+		val map1 = Map((1,10), (2,20), (3,30))   
+   		val map2 = Map( 1 -> 10, 2 -> 20, 3 -> 30 )
+		x = map1.getOrElse(10, 0)
+
+	
+	
+
+		
+  
+															
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+     
+   
+	
+
+
+
+
+
+    	
+
+
+
+
+
+	
+   
+	
+   
+  
+
+
+     
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
